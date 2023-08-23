@@ -7,4 +7,4 @@
         public string Categoria { get; internal set; }
         public double Preco { get; internal set; }
     }
-}
+} 
