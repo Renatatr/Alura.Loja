@@ -11,76 +11,58 @@ namespace Alura.Loja.Testes.ConsoleApp
     {
         static void Main(string[] args)
         {
-            // GravarUsandoAdoNet();
-            // GravarUsandoEntity();
-           // RecuperarProdutos();
-            EditarProdutos();
-           // DeletarProdutos();
-        }
-
-        private static void EditarProdutos()
-        {
-            GravarUsandoEntity();
-            RecuperarProdutos();
-
-            using (var repo = new ProdutoDAOEntity())
+            var fulano = new Cliente();
+            fulano.Nome = "abc";
+            fulano.EndereçoDeEntrega = new Endereco()
             {
-                Produto primeiro = repo.Produtos().First();
-                primeiro.Nome = "eeeeeeeeee";
-                repo.Atualizar(primeiro);
+                Numero = 21,
+                Logradouro = "rua abacaxi",
+                Complemento = "Loja",
+                Bairro = "bairrão",
+                Cidade = "Cida"
             }
-            RecuperarProdutos();
 
-        }
-
-        private static void DeletarProdutos()
-        {
-            using (var repo = new ProdutoDAOEntity())
+            using (var contexto = new LojaContext())
             {
-                IList<Produto> produtos = repo.Produtos();
-                foreach (var item in produtos)
-                {
-                    repo.Remover(item);
-                }
+                contexto.Clientes.Add(fulano);
+                contexto.SaveChanges();
             }
         }
 
-        private static void RecuperarProdutos()
+        public static MuitosParaMuitos()
         {
-            using (var repo = new ProdutoDAOEntity())
+            var p1 = new Produto() { Nome = "Suco Laranja", Categoria = "Bebida", PrecoUnitario = 73, Unidade = "Litros" };
+            var p2 = new Produto() { Nome = "Café", Categoria = "Bebida", PrecoUnitario = 2.9, Unidade = "Gramas" };
+            var p3 = new Produto() { Nome = "Macarrão", Categoria = "Alimentos", PrecoUnitario = 98.1, Unidade = "Gramas" };
+
+            var promocaoPascoa = new Promocao();
+            promocaoPascoa.Descricao = "Páscoa feliz";
+            promocaoPascoa.DataInicio = DateTime.Now;
+            promocaoPascoa.DataFinal = DateTime.Now.AddMonths(3);
+
+            promocaoPascoa.IncluiProduto(p1);
+            promocaoPascoa.IncluiProduto(p2);
+            promocaoPascoa.IncluiProduto(p3);
+
+
+
+            //var paoFrances = new Produto();
+            //paoFrances.Nome = "Pão francês";
+            //paoFrances.PrecoUnitario = 0.4;
+            //paoFrances.Unidade = "Unidade";
+            //paoFrances.Categoria = "Padaria";
+
+            //var compra = new Compra();
+            //compra.Quantidade = 6;
+            //compra.Produto = paoFrances;
+            //compra.Preco = paoFrances.PrecoUnitario*compra.Quantidade;
+
+            using (var contexto = new LojaContext())
             {
-                IList<Produto>  produtos = repo.Produtos();
-                Console.WriteLine("Foram encontrados {0} produtos.", produtos.Count);
-                foreach (var item in produtos)
-                {
-                    Console.WriteLine(item.Nome);
-                }
-            }
-        }
-
-        private static void GravarUsandoEntity()
-        {
-            Produto p = new Produto();
-            p.Nome = "Harry Potter e a Ordem da Fênix";
-            p.Categoria = "Livros";
-            p.Preco = 19.89;
-
-            using (var contexto = new ProdutoDAOEntity())
-            {
-                contexto.Adicionar(p);
-            }
-        }
-
-        private static void GravarUsandoAdoNet()
-        {
-            Produto p = new Produto();
-            p.Nome = "Harry Potter e a Ordem da Fênix";
-            p.Categoria = "Livros";
-            p.Preco = 19.89;
-
-            using (var repo = new ProdutoDAO())
-            {
-                repo.Adicionar(p);
+                //contexto.Promocoes.Add(promocaoPascoa);
+                var promocao = contexto.Promocoes.Find(1);
+                contexto.Promocoes.Remove(promocao);
+                contexto.SaveChanges();
             }
         }
     }
