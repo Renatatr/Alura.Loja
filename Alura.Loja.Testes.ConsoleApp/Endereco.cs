@@ -1,14 +1,12 @@
-﻿using System;
-
-namespace Alura.Loja.Testes.ConsoleApp
+﻿namespace Alura.Loja.Testes.ConsoleApp
 {
-    public class Endereco
+    internal class Endereco
     {
-        public int Numero { get; internal set; }
-        public string Logradouro { get; internal set; }
-        public string Complemento { get; internal set; }
-        public string Bairro { get; internal set; }
-        public string Cidade { get; internal set; }
+        public int Numero { get; set; }
+        public string Logradouro { get; set; }
+        public string Complemento { get; set; }
+        public string Bairro { get; set; }
+        public string Cidade { get; set; }
+        public Cliente Cliente { get; set; }
     }
 }
-

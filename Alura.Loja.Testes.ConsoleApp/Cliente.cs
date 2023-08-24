@@ -1,13 +1,9 @@
-﻿using System;
-
-namespace Alura.Loja.Testes.ConsoleApp
+﻿namespace Alura.Loja.Testes.ConsoleApp
 {
-    public class Cliente
+    internal class Cliente
     {
         public int Id { get; set; }
-        public string Nome { get; set; }
-        public Endereco EderecoDeEntrega { get; set; }
+        public string Nome { get; internal set; }
+        public Endereco EndereçoDeEntrega { get; internal set; }
     }
 }
-
-

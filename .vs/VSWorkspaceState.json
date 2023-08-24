@@ -1,7 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Alura.Loja.Testes.ConsoleApp"
+    "\\Alura.Loja.Testes.ConsoleApp",
+    "\\Alura.Loja.Testes.ConsoleApp\\Migrations"
   ],
+  "SelectedNode": "\\Alura.Loja.Testes.ConsoleApp.csproj",
   "PreviewInSolutionExplorer": false
 }
